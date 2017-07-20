@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="javascripts/jquery.min.js"></script>
+</head>
+<body>
+<input type="text">
+<button>确定</button>
+<script>
+        $('button').click(function(){
+            $.ajax({
+                dataType:'jsonp',
+                type:'GET',
+                url:'http://op.juhe.cn/onebox/movie/video?key=1004868905c4081df61657670a21ea20&q='+ $('input').val(),
+                success:function(data){
+                    console.log(data.result);
+                    var result=data.result;
+                    var datas={
+                        movie:{
+                            title:result.title,
+                            rating:result.rating,
+                            desc:result.desc,
+                            cover:result.cover,
+                            dir:result.dir,
+                            area:result.area
+                        },
+                        actores:result.act_s,
+                        tag:result.tag
+                    }
+                    $.ajax({
+                        url:'/m/a',
+                        type:'POST',
+                        data:JSON.stringify(datas),
+                        contentType:'application/json',
+                        success:function(results){
+//                        console.log(results);
+//                        if (results.success){
+//                            alert('添加成功')
+//                        }else{
+//                            alert('添加失败');
+//                        }
+                        }
+                    })
+                }
+            })
+        })
+
+
+
+
+</script>
+</body>
+</html>

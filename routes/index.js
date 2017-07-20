@@ -1,21 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var mysql = require('mysql');
-var conn = mysql.createConnection({
-    host:'10.0.44.252',
-    user:'kkmovie',
-    password:'123',
-    database:'kmovie'
-})
-conn.connect(function(err){
-    if (err) {
-        throw err;
-    }else{
-        console.log('连接成功');
-
-    }
-})
+var conn=require('../mysql/db')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

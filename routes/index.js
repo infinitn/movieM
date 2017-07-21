@@ -6,7 +6,7 @@ var conn=require('../mysql/db')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
-});
+})
 
 router.get('/d/w',function(req,res){
     var movies = 'SELECT * FROM movie limit 0,4';

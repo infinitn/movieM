@@ -32,5 +32,17 @@ router.get('/c/m',function (req,res) {
     });
 })
 
+router.get('/c/actores',function (req,res) {
+    var sql = 'SELECT * FROM actores';
+    conn.query(sql,function(err,result){
+        if(err){
+            res.send({success:false,data:err.message});
+        }else{
+            console.log(result);
+            res.send({success:true,data:result});
+        }
+    });
+})
+
 module.exports = router;
 
